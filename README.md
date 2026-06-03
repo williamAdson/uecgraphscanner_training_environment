@@ -115,8 +115,11 @@ data/
 ├── processed/processed.csv        
 ├── raw/dataset.csv
 ├── split/{test.csv,train.csv,val.csv}
+```
 
 Model File Structure
+```text
 models/
 ├── checkpoints/{best_model.pth,vocab.pth}           
 ├── saved_models/                
+```
