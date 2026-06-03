@@ -1,5 +1,5 @@
 # The UECGraphScanner Framework
-A framework for graph-based scanning and data exploration.
+A framework for graph-based scanning and data exploration of unchecked external calls in smart contracts based on bytecode level analysis.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ A framework for graph-based scanning and data exploration.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-repo/UECGraphScanner.git
+git clone git@github.com:williamAdson/uecgraphscanner_training_environment.git
 ```
 2. Install the required dependencies:
 ```bash
@@ -66,9 +66,6 @@ def download_dataset(url, filename):
         print(f"Successfully downloaded {filename}")
     else:
         print(f"Failed to download. Status code: {response.status_code}")
-
-# dataset must be saved in $root:data
-# model must be saved in $root:models/checkpoints
 ```
 
 Fetch Data:
@@ -99,7 +96,7 @@ python evaluate.py
 ```
 
 ## Project Structure
-```json
+```text
 UECGraphScanner/
 ├── notebooks/           
 ├── src/                
@@ -111,3 +108,15 @@ UECGraphScanner/
 ├── requirements.txt   
 └── README.md     
 ```
+
+Data File Structure
+```text
+data/
+├── processed/processed.csv        
+├── raw/dataset.csv
+├── split/{test.csv,train.csv,val.csv}
+
+Model File Structure
+models/
+├── checkpoints/{best_model.pth,vocab.pth}           
+├── saved_models/                
