@@ -50,47 +50,45 @@ jupyter notebook --no-browser
 ## Model Training & Evaluation
 Reproduce the experiment by following the steps below.
 
-Data Files:
+1. Fetch Data:
 ```bash
 import os
 import requests
+import tarfile
+import shutil
 
-DATASET_PATH = "https://huggingface.co/datasets/Adson59/SmartUecDB/resolve/main/data.tar"
-MODEL_PATH = "https://huggingface.co/datasets/Adson59/UECGraphScanner/resolve/main/best_model.pth"
 
-def download_dataset(url, filename):
-    response = requests.get(url)
-    if response.status_code == 200:
-        with open(filename, 'wb') as f:
-            f.write(response.content)
-        print(f"Successfully downloaded {filename}")
-    else:
-        print(f"Failed to download. Status code: {response.status_code}")
+# Download dataset
+print("Downloading dataset...")
+response = requests.get("https://huggingface.co/datasets/Adson59/SmartUecDB/resolve/main/data.tar")
+with open("data.tar", 'wb') as f:
+    f.write(response.content)
+
+# Extract dataset
+with tarfile.open("data.tar", 'r') as tar:
+    tar.extractall(".")
+
+# Download model
+print("Downloading model...")
+response = requests.get("https://huggingface.co/datasets/Adson59/UECGraphScanner/resolve/main/best_model.pth")
+with open("data/best_model.pth", 'wb') as f:
+    f.write(response.content)
+
+print("Done! DataFiles saved!")
 ```
 
-Fetch Data:
-```bash
-url = (DATASET_PATH)
-download_dataset(url, 'data')
-```
-
-Fetch Model:
-```bash
-url = (MODEL_PATH)
-download_dataset(url, 'checkpoints')
-```
-
-Train the model:
+2. Train the model:
 ```bash
 python main.py
 ``` 
 
-Recover the vocabulary:
+3. Recover the vocabulary:
 ```bash
+# only run this if you don't have the models/checkpoints/vocab.pth file
 python recover_vocab.py
 ```
 
-Evaluate the model:
+4. Evaluate the model:
 ```bash
 python evaluate.py
 ```
